@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "media")
-public class Media {
+public class Media extends Item{
 
     @Id
     private String id;
@@ -12,7 +12,12 @@ public class Media {
     private String title, actor, genre, format, image;
     private int year, runtime;
 
+    public Media(){
+        super();
+    }
+    
     public Media(String title, String actor, String genre, String format, String image, int year, int runtime) {
+        super();
         this.title = title;
         this.actor = actor;
         this.genre = genre;

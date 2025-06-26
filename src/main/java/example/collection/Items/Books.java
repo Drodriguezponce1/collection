@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "books")
-public class Books {
+public class Books extends Item{
 
     @Id
     private String id;
@@ -12,7 +12,12 @@ public class Books {
     private String title, author, genre, format, image;
     private int year, pages;
 
+    public Books(){
+        super();
+    }
+    
     public Books(String title, String author, String genre, String format, String image, int year, int pages) {
+        super();
         this.title = title;
         this.author = author;
         this.genre = genre;

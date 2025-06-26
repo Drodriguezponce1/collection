@@ -3,7 +3,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "music")
-public class Music {
+public class Music extends Item{
 
     @Id
     private String id;
@@ -11,8 +11,13 @@ public class Music {
     private String title, artist, genre, format, image;
     private int year, runtime, tracks;
 
+    public Music(){
+        super();
+    }
+
     public Music(String title, String artist, String genre, String format, String image, int year, int runtime,
             int tracks) {
+                super();
         this.title = title;
         this.artist = artist;
         this.genre = genre;

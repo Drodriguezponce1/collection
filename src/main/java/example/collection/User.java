@@ -1,6 +1,7 @@
 package example.collection;
 
 import java.util.List;
+import java.util.ArrayList;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,21 +12,33 @@ import example.collection.Items.Media;
 
 @Document(collection = "users")
 public class User {
-    
+
     @Id
     private String id;
 
     private String firstName;
     private String lastName;
 
-    @DBRef
     private List<Music> music;
 
-    @DBRef
     private List<Books> books;
 
-    @DBRef
     private List<Media> media;
+
+    public User() {
+        this.books = new ArrayList<>();
+        this.media = new ArrayList<>();
+        this.music = new ArrayList<>();
+    }
+
+    // Parameterized constructor (optional)
+    public User(String firstName, String lastName, List<Music> music, List<Books> books, List<Media> media) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.music = music;
+        this.books = books;
+        this.media = media;
+    }
 
     // Getters and setters
     public String getId() {
@@ -36,7 +49,7 @@ public class User {
         this.id = id;
     }
 
-     public String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -75,5 +88,5 @@ public class User {
     public void setMedia(List<Media> media) {
         this.media = media;
     }
-    
+
 }
