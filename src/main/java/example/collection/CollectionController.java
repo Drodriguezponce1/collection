@@ -72,6 +72,7 @@ public class CollectionController {
             } else if (item instanceof Media) {
                 user.getMedia().add((Media) item);
             }
+            
 
             // Save the updated user
             userRepository.save(user);
