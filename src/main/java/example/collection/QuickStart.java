@@ -13,18 +13,27 @@ public class QuickStart {
     public static void main( String[] args ) {
 
         // Replace the placeholder with your MongoDB deployment's connection string
-        String uri = "mongodb+srv://danieljrodcoding:Goofy778719989@collection.zuevfjb.mongodb.net/?retryWrites=true&w=majority&appName=Collection";
+        String uri = "mongodb+srv://danieljrodcoding:Goofy77871998@collection.zuevfjb.mongodb.net/?retryWrites=true&w=majority&appName=Collection";
 
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("sample_mflix");
-            MongoCollection<Document> collection = database.getCollection("movies");
+        String connectionString = uri; 
 
-            Document doc = collection.find(eq("title", "Back to the Future")).first();
-            if (doc != null) {
-                System.out.println(doc.toJson());
-            } else {
-                System.out.println("No matching documents found.");
+        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+            // Ping the database to test the connection
+            MongoDatabase database = mongoClient.getDatabase("collection"); // You can use any database
+            Document pingCommand = new Document("ping", 1);
+            database.runCommand(pingCommand);
+            
+            System.out.println("Successfully connected to MongoDB!");
+
+            // Optional: List database names to further confirm connectivity
+            System.out.println("Available databases:");
+            for (String dbName : mongoClient.listDatabaseNames()) {
+                System.out.println("- " + dbName);
             }
+
+        } catch (Exception e) {
+            System.err.println("Failed to connect to MongoDB: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
