@@ -32,7 +32,7 @@ public class CollectionController {
     private UserRepository userRepository; // Assuming you're using a MongoRepository
 
     @GetMapping("/hello")
-    public String getTester(@RequestParam(defaultValue = "NSKONDKLSNDLK") String param) {
+    public String getTester(@RequestParam(defaultValue = "NSKONDKLSNDLKa") String param) {
         return new String(param);
     }
 
